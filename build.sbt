@@ -161,7 +161,7 @@ lazy val parseBase = crossProject.in(file("parse"))
   .settings(allSettings: _*)
   .jsSettings(commonJsSettings: _*)
   .jvmConfigure(_.copy(id = "parse").dependsOn(jawn))
-  .jsConfigure(_.copy(id = "parseJS"))
+  .jsConfigure(_.copy(id = "parseJS").dependsOn(scalajs))
   .dependsOn(coreBase)
 
 lazy val parse = parseBase.jvm
@@ -174,7 +174,7 @@ lazy val scalajs = project
   )
   .settings(allSettings)
   .enablePlugins(ScalaJSPlugin)
-  .dependsOn(parseJS)
+  .dependsOn(coreJS)
 
 lazy val testsBase = crossProject.in(file("tests"))
   .settings(
