@@ -211,6 +211,20 @@ lazy val jawn = project
   )
   .dependsOn(core)
 
+lazy val streaming = project
+  .settings(
+    description := "circe streaming",
+    moduleName := "circe-streaming"
+  )
+  .settings(allSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "io.iteratee" %% "iteratee-core" % "0.2.0-SNAPSHOT",
+      "org.scalaz" %% "scalaz-concurrent" % "7.1.5"
+    )
+  )
+  .dependsOn(core, jawn)
+
 lazy val jackson = project
   .settings(
     description := "circe jackson",
